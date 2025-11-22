@@ -1,8 +1,26 @@
-課程介紹
-1.本課程主要學習 spring boot ， 此為一個業界常用的後端程式開發工具 跟es很像
-2.業界目前流行前後端分開的方式開發方式 ， 前端程式為javascript 像是Angular React 需自行學習
-3.業界常用程式碼code管理程式 github  和 sourcertree
+課程介紹 s
+1.本課程主要學習 spring & spring boot ， 此為一個業界常用的後端程式開發工具 跟eclipse很像
+2.業界目前流行前後端分開的方式開發方式 ， 前後端只做資料交換 因為可以一起開發所以速度更快 更好維護
+  前端程式為javascript 像是Angular , React 等需自行學習 後端為spring
+2.1 spring和eclipse的差異
+    eclipse太過臃腫 spring會將其輕量化
+3.事前準備 業界常用程式碼(code)管理程式 github  和 sourcetree
 3.1 建立帳號和安裝
-3.2 如何下載網路上的程式 push sourcertree:clone ; github:<code>
-3.2 如何上傳本地的程式  pull 
-3.2.1 先建立新token github 右上角 setting
+3.2 如何下載github上的程式 (pull) sourcertree:clone ; github:<code>
+3.2 如何上傳本地的程式  (push) 
+3.2.1 先建立新token github 右上角 setting -->Developer Settings -->personal access token -->tokens (classic)-->new 注意 錯過就沒機會再看到了
+                   sourcetree 右上角 setting--> 將copy過後的token加到//後  +@ 
+3.2.2 commit 
+4.簡易將專案放置到遠端儲存庫的方式
+4.1 先在 GitHub 建立一個新的 Repository
+4.2 將 Repository clone 到本機資料夾
+4.3 直接將專案複製到 git 資料夾當中
+4.4 commit 並 push 到遠端
+
+5.spring 開發方式分兩種 maven和 gradle 以maven為主
+6.maven如何外掛一些Dependency (依賴)
+6.1 先上網https://mvnrepository.com/ 找到想要使用的Dependency (找最多人使用的最安全) 複製代碼
+6.2 開啟maven中的pom.xml 打開<dependencies></dependencies> 之間插入
+6.3 下載下來的資料會在使用者/.m2中
+
+7.Spring 的核心理念是 控制反轉（IoC） 與 依賴注入（DI）
