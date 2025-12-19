@@ -68,7 +68,17 @@
  而受到Spring管理的物件，就稱為 Bean
 
 
+例:
+  com.model.
+            Toyota.class
+            ToyotaEngine.class
+      main.class
 
+當Toyota依賴ToyotaEngine時 
+1.建立Engine介面
+2.在Toyota中 privite Engine engine;
+3.依賴注入(後面會提)
 
+4.在main使用
 
 
