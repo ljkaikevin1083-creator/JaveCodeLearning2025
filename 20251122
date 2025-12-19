@@ -1,10 +1,10 @@
-課程介紹 s
+課程介紹 
 1.本課程主要學習 spring & spring boot ， 此為一個業界常用的後端程式開發工具 跟eclipse很像
-2.業界目前流行前後端分開的方式開發方式 ， 前後端只做資料交換 因為可以一起開發所以速度更快 更好維護
-  前端程式為javascript 像是Angular , React 等需自行學習 後端為spring
+2.業界目前流行:前後端分開的方式開發方式 ， 前後端只做資料交換(Json) 因為可以一起開發所以速度更快 更好維護
+  前端程式為javascript 像是Angular , React 等需自行學習 後端為spring & spring boot
 2.1 spring和eclipse的差異
     eclipse太過臃腫 spring會將其輕量化
-3.事前準備 業界常用程式碼(code)管理程式 github  和 sourcetree
+3.事前準備 業界常用程式碼(code)的管理程式 github  和 sourcetree
 3.1 建立帳號和安裝
 3.2 如何下載github上的程式 (pull) sourcertree:clone ; github:<code>
 3.2 如何上傳本地的程式  (push) 
@@ -30,7 +30,7 @@
             類別的依賴項目不是由類別本身負責創建或是管理，而是由外部的 容器 負責創建和注入。
            !!高層的實作，不依賴底層的實作，而會依賴一個更高層次的抽象!!==解藕
 
-注意:到此為止MAIN中都要有NEW 依舊需要解決 方法:ioc容器
+注意:到此為止MAIN中都要有NEW 依舊需要解決 方法:ioc容器 !!!以後都不用new 改用ioc容器!!!
            
 補充:SOLID 原則
 1. 單一職責原則
@@ -68,17 +68,6 @@
  而受到Spring管理的物件，就稱為 Bean
 
 
-9.介紹解偶方法
-9.1 xml 
-9.2JAVA方法
-  使用 @Configuration 類別與 @Bean 方法，在程式中以 Java 代碼方式定義與管理 Bean。
-  約定大於配置:如果沒有配置(BEAN)他會自動配置一些BEAN 通常是類別名稱 但首字母小寫
-
-  在類別上@Configuration 表示這個類別用來配置(當成ioc容器)
-  類別中 @Bean xx方法 : 把想要受管理的xx類別傳入
-  MAIN方法中 new AnnotationConfigApplicationContext(xxxx.class); 來使用
-
-  !!!當Config中 有需要傳入參數時，他會自己從bean中找 所以只要model和Config中設定就好 不用在main中在在設定一次 解少依賴
 
 
 
