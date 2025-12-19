@@ -1,0 +1,20 @@
+9.介紹解偶方法
+  分成spring 和 sts 後者為前者的改良 
+ 
+9.2  spring法
+
+9.2.1  JAVA方法
+
+  使用 @Configuration 類別與 @Bean 方法
+  
+  建立Config資料夾
+    建立新類別xxxxConfig  並標註為@Configuration
+      在程式中以 Java 方法 方式定義與管理 Bean， 並標註 @Bean
+      
+  約定大於配置:如果沒有配置(BEAN)他會自動配置一些BEAN 通常是類別名稱 但首字母小寫
+
+  在類別上@Configuration 表示這個類別用來配置(當成ioc容器)
+  類別中 @Bean xx方法 : 把想要受管理的xx類別傳入
+  MAIN方法中 new AnnotationConfigApplicationContext(xxxx.class); 來使用
+
+  !!!當Config中 有需要傳入參數時，他會自己從bean中找 所以只要model和Config中設定就好 不用在main中在在設定一次 解少依賴
