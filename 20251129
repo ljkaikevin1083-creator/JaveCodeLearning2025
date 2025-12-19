@@ -1,20 +1,137 @@
 9.介紹解偶方法
-  分成spring 和 sts 後者為前者的改良 
+  分成spring 和 Spring Boot 後者為前者的改良 
  
 9.2  spring法
 
-9.2.1  JAVA方法
+9.2.1  JAVA配置
 
   使用 @Configuration 類別與 @Bean 方法
   
   建立Config資料夾
     建立新類別xxxxConfig  並標註為@Configuration
-      在程式中以 Java 方法 方式定義與管理 Bean， 並標註 @Bean
-      
+      在程式中以 Java 方法 方式定義與管理 Bean， 並標註 @Bean(可命名)
+  MAIN方法中 new AnnotationConfigApplicationContext(xxxx.class); 來使用
+  
   約定大於配置:如果沒有配置(BEAN)他會自動配置一些BEAN 通常是類別名稱 但首字母小寫
-
   在類別上@Configuration 表示這個類別用來配置(當成ioc容器)
   類別中 @Bean xx方法 : 把想要受管理的xx類別傳入
-  MAIN方法中 new AnnotationConfigApplicationContext(xxxx.class); 來使用
+  
 
   !!!當Config中 有需要傳入參數時，他會自己從bean中找 所以只要model和Config中設定就好 不用在main中在在設定一次 解少依賴
+
+9.2.2Annotation 配置   
+   使用 @Configuration 類別
+   並在model中使用 @Component 、 @Service 、 @Repository 、@Controller 等注解，讓 Spring 自動掃描並註冊成 Bean。
+
+   建立Config資料夾
+     建立新類別xxxxConfig  並標註為@Configuration  和 @ComponentScan!!!!!!  裡面空白
+   MAIN方法中 new AnnotationConfigApplicationContext(xxxx.class); 來使用
+
+將此法再次精簡化後即為Spring Boot的目的
+
+
+9.3  Spring Boot
+
+不需要Config 但對整體結構都有要求
+
+
+
+
+
+
+
+
+10.依賴注入 @Autowired !!!!!!
+在 Spring 中，我們不會使用 new 來自行建立由 IoC 容器管理的 Bean，而是透過依賴注入（Dependency Injection, DI），讓容器自動提供所需的物件。
+
+建構式注入
+Setter注入
+欄位注入
+
+
+11.補充 Bean中的 Scope (作用域)
+@Scope標籤
+Singleton (單一實例)
+   @Component
+   @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+   public class SingletonBean { 
+   }
+
+Prototype (原型)
+   @Configuration
+   @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+   public class PrototypeBean {
+   }
+
+
+12.補充Bean生命週期
+@Lazy @PostConstruct @PreDestroy
+
+1.@Lazy
+Spring Bean 預設會在容器啟動時就建立實例，稱為 急切初始化（Eager Initialization），
+好處是若 Bean 配置錯誤，應用程式會在啟動時立即報錯，方便偵錯。
+
+若設定為 延遲初始化（Lazy Initialization），
+則該 Bean 在第一次被呼叫時才會建立。這種方式適合用於建立成本較高、初始化時間較長，或在部分情境中可能不會被用到的 Bean，可減少系統啟動時的負擔。
+
+2.
+@Component
+public class LifeCycleBean {
+
+	private ToyotaEngine engine;
+	
+	public LifeCycleBean() {
+		System.out.println("1. 我是建構式");
+	}
+	
+	@Autowired
+	public void setEngine(ToyotaEngine engine) {
+		System.out.println("1.1 我是Setter");
+		this.engine = engine;
+	}
+
+	@PostConstruct
+	public void init() {
+		System.out.println("2. @PostConstruct");
+	}
+	
+	@PreDestroy
+	public void cleanup() {
+		System.out.println("3. @PreDestroy");
+	}
+}
+
+
+13.補充設計模式 (Design Pattern)
+單例模式 Singleton
+讓你能夠保證一個類只有一個實例，並提供一個訪問該實例的全局節點。
+
+public class SingletonUtil {	
+    // 2. 私有靜態的欄位，用來存放單例實體
+    private static SingletonUtil instance;
+    // 1. 私有建構式，不讓外部程式 new
+    private SingletonUtil() {
+    }	
+    // 3. 公有靜態的方法，來獲得單例實體
+    public static SingletonUtil getInstance() {
+        if (instance == null) {
+        	// 首次呼叫才產生物件
+            instance = new SingletonUtil();
+        }
+        return instance;
+    }
+    
+    public void show() {
+    	System.out.println(instance);
+    }
+
+}
+
+呼叫單例
+public static void main(String[] args) {
+    SingletonUtil util = SingletonUtil.getInstance();
+    util.show();
+
+    SingletonUtil util2 = SingletonUtil.getInstance();
+    util2.show();
+}
