@@ -32,8 +32,11 @@
 
 9.3  Spring Boot
 
-不需要Config 但對整體結構都有要求
+不需要Config  @ComponentScan 但對整體結構都有要求
+並在model中使用 @Component 、 @Service 、 @Repository 、@Controller 等注解，讓 Spring 自動掃描並註冊成 Bean。
 
+MAIN方法中 有@SpringBootApplication 自動做很多事 包含@ComponentScan
+ApplicationContext cts= new SpringApplication.run(Application.class, args);
 
 
 
